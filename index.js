@@ -1,8 +1,9 @@
 //const fs = require("fs");
 import fs from"fs";
 import express from "express";
+import dotenv from "dotenv";
 const app = express()
-const PORT = 5000;
+const PORT = process.env.PORT;
 
 app.get('/', function (req, res) {
   res.send('<br> to create use /createfile <br>'+"to read use /readfile")
