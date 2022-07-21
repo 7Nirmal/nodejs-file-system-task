@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
 app.get("/createfile",  (req, res) => {
   const{time,file} = TimeStamp();
   
-fs.writeFile(`./Backup/${file}.txt`,time,(err) => {
+fs.writeFile(`./folder/${file}.txt`,time,(err) => {
 if (err)  console.log(err);
   else console.log("file created successfully");
 })
@@ -20,7 +20,7 @@ res.send("file created successfully");
 
 
 app.get("/readfile", (req, res) => {  
-fs.readdir("./Backup/",(err,files) => {
+fs.readdir("./folder/",(err,files) => {
 if (files.length == 0){
   res.send("no files in directory");
 }
