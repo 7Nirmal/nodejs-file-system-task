@@ -3,7 +3,7 @@ import fs from"fs";
 import express from "express";
 import dotenv from "dotenv";
 const app = express()
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 app.get('/', function (req, res) {
   res.send('<br> to create use /createfile <br>'+"to read use /readfile")
@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
 
 app.get("/createfile",  (req, res) => {
   const{time,file} = TimeStamp();
-  
+  console.log(time,file);
 fs.writeFile(`./folder/${file}.txt`,time,(err) => {
 if (err)  console.log(err);
   else console.log("file created successfully");
@@ -43,16 +43,16 @@ function TimeStamp(){
   var d = Date.now();
 var date = new Date(d);
 var day = date.getDate();
-var month = date.getMonth();
+var month = date.getMonth() +1;
 var year = date.getFullYear();
 var hrs = date.getHours();
 var mins = date.getMinutes();
 var secs = date.getSeconds();
 var time= hrs+":"+mins+":"+secs;
-var file = day+"_"+month+"_"+year+"_"+hrs+"_"+mins+"_"+secs;
+var file = day+"-"+month+"-"+year+"_"+hrs+"_"+mins+"_"+secs;
     
 
  return {time,file};
  }
 
-//  console.log(TimeStamp());
+
